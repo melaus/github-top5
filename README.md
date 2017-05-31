@@ -6,7 +6,7 @@ The base URL to deployed API is ```https://apis.melaus.xyz/top5```, and has two 
 
 - ```https://apis.melaus.xyz/top5/<github_handle>```:
     - returns high-level information (name, url and size) about the largest 5 repos of a user
-- ```https://apis.melaus.xyz/top5/<github_handel>/detailed```: 
+- ```https://apis.melaus.xyz/top5/<github_handle>/detailed```: 
     - returns all information about the largest 5 repos of a user
 
 

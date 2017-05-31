@@ -16,7 +16,7 @@ The base URL to deployed API is ```https://apis.melaus.xyz/top5```, and has two 
 
 This is built in two parts. ```github.py``` works as a 'library' and carries out the call to the public GitHub API to obtain repo information of a user. The content is being sorted and transformed to form the output of the two endpoints. The GitHub API returns a status 404 if the API call is failed, e.g. a non-existing username is given. This API handles such error similarly. ```top5_api.py``` forms the structure of the API call using ```Flask```.
 
-Pagination is used to retrieve all public repos, as the maximum number of repos that can be retrieved per call is 100. A token is used to increase the rate limit.
+Pagination is used to retrieve all public repos of the given user, as the maximum number of repos that can be retrieved per call is 100. A token is used to increase the rate limit per hour.
 
 ## Deployment
 This is the first time I have written an API and made it available on the web. The closest experience was setting up my [static personal website](https://www.melaus.xyz) using ```jinja2```, which also gave me basic experience in encrypting a website, basic handling of ```nginx``` and self-hosting on DigitalOcean.

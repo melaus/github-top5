@@ -12,7 +12,7 @@ class Github:
     def __get_user_repos(self, username):
         """
         obtain repo info from Github given a username
-        :param username: String.
+        :param username: String. Github handle of the user requested
         :return: requests object containing repo info and response status
         """
         content = requests.get('{0}/users/{1}/repos'.format(API_BASE, username))
@@ -22,6 +22,7 @@ class Github:
         """
         get the largest 5 public repos
         :param content_list: List of dict's. Repo information in Python list/ dict formats, converted from JSON
+        :param simple: Boolean. [default = False] Whether to send full response or high level information about each repo
         :return: list of dict's of the largest 5 public repos
         """
         top5 = sorted(content_list, key=lambda x: x['size'], reverse=True)[0:5]
@@ -31,7 +32,7 @@ class Github:
             top5 = map(lambda x:
                        {'name': x['name'],
                         'size': x['size'],
-                        'url' : x['url']
+                        'html_url' : x['html_url']
                        }, top5)
 
         #print map(lambda x: (x['name'], x['size']), top5) 
@@ -40,8 +41,8 @@ class Github:
     def get_top5(self, username, simple=False):
         """
         public interface for API use
-        :param username:
-        :param simple:
+        :param username: String. Github handle of the user requested
+        :param simple: Boolean. [default = False] Whether to send full response or high level information about each repo
         :return:
         """
         content = self.__get_user_repos(username)

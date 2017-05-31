@@ -9,7 +9,10 @@ g   = Github()
 
 @app.route("/top5")
 def index():
-    return jsonify(message="API to obtain 5 largest public GitHub repos of a given GitHub handle",
+    """
+    simple introduction of repo
+    """
+    return jsonify(message="API to obtain 5 largest public GitHub repos of a given GitHub handle, see https://github.com/melaus/github-top5 for more information",
             base_url="https://apis.melaus.xyz/top5",
             usage="['base_url'/<github_handle>] to obtain high-level details (repo name, size and url); ['base_url'/<github_handle>/detailed] to obtain all information provided by GitHub's API")
 

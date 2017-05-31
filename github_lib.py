@@ -17,7 +17,6 @@ class Github:
         :return: JSON containing repo info through pagination and response status
         """
         # initial call to obtain the first 100 public repos
-        print 'TOKEN: {0}'.format(self.TOKEN)
         all_content = []
         content = requests.get('{0}/users/{1}/repos?per_page=100'.format(API_BASE, username), headers={'Authorization': 'TOKEN {0}'.format(self.TOKEN)})
 
@@ -42,8 +41,6 @@ class Github:
         :param simple: Boolean. [default = False] Whether to send full response or high level information about each repo
         :return: list of dict's of the largest 5 public repos
         """
-        print content_list
-
         top5 = sorted(content_list, key=lambda x: x['size'], reverse=True)[0:5]
 
         # if only top level info is required

@@ -6,7 +6,6 @@ import sys
 import os
 
 app = Flask(__name__)
-print os.environ.get('TOP5_TOKEN')
 g   = Github(os.environ.get('TOP5_TOKEN'))
 
 

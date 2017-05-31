@@ -11,6 +11,7 @@ g   = Github()
 def index():
     """
     simple introduction of repo
+    :return: A JSON of a short message about API, base URL and usage details
     """
     return jsonify(message="API to obtain 5 largest public GitHub repos of a given GitHub handle, see https://github.com/melaus/github-top5 for more information",
             base_url="https://apis.melaus.xyz/top5",
@@ -22,7 +23,7 @@ def show_repo(username):
     """
     obtain high-level info of the largest 5 public repos of the requested user
     :param username: String. username
-    :return: json of largest 5 or 404
+    :return: JSON of largest 5 or 404
     """
     output = g.get_top5(username, simple=True)
 
@@ -36,9 +37,8 @@ def show_repo(username):
 def show_repo_detailed(username):
     """
     obtain detailed info of the largest 5 public repos of the requested user
-
     :param username: String. username
-    :return: json of largest 5 or 404
+    :return: JSON of largest 5 or 404
     """
     output = g.get_top5(username)
     if type(output) == int and output == 404:
@@ -52,7 +52,7 @@ def page_not_found(error):
     """
     Return a 'Not Found' message and status 404
     :param error: The 404 error
-    :return:
+    :return: JSON of a message saying "Not Found" and status 404
     """
     return jsonify(message="Not Found"), 404
 

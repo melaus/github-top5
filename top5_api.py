@@ -9,7 +9,9 @@ g   = Github()
 
 @app.route("/top5")
 def index():
-    return jsonify(message="API to obtain 5 largest public GitHub repos of a given GitHub Handle")
+    return jsonify(message="API to obtain 5 largest public GitHub repos of a given GitHub handle",
+            base_url="https://apis.melaus.xyz/top5",
+            usage="['base_url'/<github_handle>] to obtain high-level details (repo name, size and url); ['base_url'/<github_handle>/detailed] to obtain all information provided by GitHub's API")
 
 
 @app.route("/top5/<username>")
@@ -51,5 +53,6 @@ def page_not_found(error):
     """
     return jsonify(message="Not Found"), 404
 
+# Entry point for testing and uWSGI
 if __name__ == "__main__":
     app.run()

@@ -34,7 +34,7 @@ class Github:
                         'url' : x['url']
                        }, top5)
 
-        print map(lambda x: (x['name'], x['size']), top5)
+        #print map(lambda x: (x['name'], x['size']), top5) 
         return top5
 
     def get_top5(self, username, simple=False):
@@ -45,7 +45,7 @@ class Github:
         :return:
         """
         content = self.__get_user_repos(username)
-        print content.status_code
+        #print content.status_code
 
         if content.status_code >= 400:
             # no top 5 if error (e.g. user does not exists)
@@ -55,6 +55,6 @@ class Github:
 
 
 # for testing purposes
-if __name__ == '__main__':
-    g = Github()
-    print g.get_top5('tensorflow', simple=False)
+#if __name__ == '__main__':
+    #g = Github()
+    #print g.get_top5('tensorflow', simple=False)

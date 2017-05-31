@@ -1,6 +1,6 @@
 
 from flask import Flask, jsonify, abort
-from github import Github
+from github_lib import Github
 import json
 
 app = Flask(__name__)

@@ -15,7 +15,7 @@ class Github:
         :param username: String. Github handle of the user requested
         :return: requests object containing repo info and response status
         """
-        content = requests.get('{0}/users/{1}/repos'.format(API_BASE, username))
+        content = requests.get('{0}/users/{1}/repos'.format(API_BASE, username), headers={'Authorization': 'TOK:24e1a25c2066c9c85d0cd727387bbfd023af4d6f'})
         return content
 
     def __find_top5(self, content_list, simple=False):
@@ -25,6 +25,8 @@ class Github:
         :param simple: Boolean. [default = False] Whether to send full response or high level information about each repo
         :return: list of dict's of the largest 5 public repos
         """
+
+        print 'length: {0}'.format(len(content_list))
         top5 = sorted(content_list, key=lambda x: x['size'], reverse=True)[0:5]
 
         # if only top level info is required

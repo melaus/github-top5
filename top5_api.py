@@ -2,9 +2,10 @@
 from flask import Flask, jsonify, abort
 from github_lib import Github
 import json
+import sys
 
 app = Flask(__name__)
-g   = Github()
+g   = Github(sys.argv[1])
 
 
 @app.route("/top5")

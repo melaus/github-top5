@@ -1,13 +1,13 @@
 import requests
-import json
 import re
-from collections import OrderedDict
+import sys
 
 API_BASE = 'https://api.github.com'
 
 
 class Github:
-    def __init__(self):
+    def __init__(self, token):
+        self.TOKEN= token
         return
 
     def __get_user_repos(self, username):
@@ -18,7 +18,8 @@ class Github:
         """
         # initial call to obtain the first 100 public repos
         all_content = []
-        content = requests.get('{0}/users/{1}/repos?per_page=100'.format(API_BASE, username), headers={'Authorization': 'TOKEN 7c0ea0b8013b08ec143aa8a94f87b0d3c5ed2ff9'})
+        content = requests.get('{0}/users/{1}/repos?per_page=100'.format(API_BASE, username),
+                               headers={'Authorization': 'TOKEN {0}'.format(self.TOKEN)})
 
         # return error directly before attempting to paginate
         if content.status_code == 404:
@@ -29,7 +30,7 @@ class Github:
         # check if there's more pages to go and perform pagination
         if 'Link' in content.headers.keys() and 'rel="next"' in content.headers['Link']:
             next_link = re.search(r"<([a-z:/.?_=&0-9]+)>; rel=\"next\"", content.headers['Link']).group(1)
-            content = requests.get(next_link, headers={'Authorization': 'TOKEN 7c0ea0b8013b08ec143aa8a94f87b0d3c5ed2ff9'})
+            content = requests.get(next_link, headers={'Authorization': 'TOKEN {0}'.format(self.TOKEN)})
             all_content += content.json()
 
         return all_content
@@ -70,7 +71,7 @@ class Github:
             return self.__find_top5(content, simple)
 
 
-# for testing purposes
+# # for testing purposes
 # if __name__ == '__main__':
 #     g = Github()
 #     print g.get_top5('facebook', simple=True)

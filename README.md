@@ -19,7 +19,7 @@ This is built in two parts. ```github.py``` works as a 'library' and carries out
 Pagination is used to retrieve all public repos of the given user, as the maximum number of repos that can be retrieved per call is 100. A token is used to increase the rate limit per hour.
 
 ## Deployment
-This is the first time I have written an API and made it available on the web. The closest experience was setting up my [static personal website](https://www.melaus.xyz) using ```jinja2```, which also gave me basic experience in encrypting a website, basic handling of ```nginx``` and self-hosting on DigitalOcean.
+This is the first time I have written an API and made it available on the web. The closest experience was setting up my [static personal website](https://www.melaus.xyz) using ```pelican```, which also gave me basic experience in encrypting a website, basic handling of ```nginx``` and self-hosting on DigitalOcean.
 
 For deployment, the first hurdle that needed solving is the way to deploy a ```Flask``` API. To enable a more scalable and reliable solution, a ```uWSGI``` application server is used rather than the built-in server. With the help of this [guide](https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-uwsgi-and-nginx-on-ubuntu-16-04), I set up the API with associated configurations and run it as a system service, so that it is quicker to make changes and can run in the background and restart automatically if the machine was turned off.
 

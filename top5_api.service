@@ -1,0 +1,14 @@
+[Unit]
+Description=uWSGI instance to serve top5_api
+After=network.target
+
+[Service]
+User=melaus
+Group=admin
+WorkingDirectory=/home/melaus/repo/github-top5
+Environment="PATH=/usr/local/bin"
+Environment="TOP5_TOKEN=3d6c2a24eaab0cf3390008dd68706eaaf514eb78"
+ExecStart=/usr/local/bin/uwsgi --ini top5_api.ini
+
+[Install]
+WantedBy=multi-user.target

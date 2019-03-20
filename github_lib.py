@@ -18,7 +18,7 @@ class Github:
         """
         # initial call to obtain the first 100 public repos
         all_content = []
-        content = requests.get('{0}/users/{1}/repos?per_page=100'.format(API_BASE, username), headers={'Authorization': 'TOKEN {0}'.format(self.TOKEN)})
+        content = requests.get('{0}/users/{1}/repos?per_page=100'.format(API_BASE, username), headers={'Content-Type': 'application/json'})
 
         # return error directly before attempting to paginate
         if content.status_code == 404:
@@ -41,6 +41,7 @@ class Github:
         :param simple: Boolean. [default = False] Whether to send full response or high level information about each repo
         :return: list of dict's of the largest 5 public repos
         """
+        print(content_list)
         top5 = sorted(content_list, key=lambda x: x['size'], reverse=True)[0:5]
 
         # if only top level info is required
@@ -69,7 +70,7 @@ class Github:
             return self.__find_top5(content, simple)
 
 
-# # for testing purposes
-# if __name__ == '__main__':
-#     g = Github()
-#     print g.get_top5('facebook', simple=True)
+# for testing purposes
+#if __name__ == '__main__':
+    #g = Github("130e60bfb7a9c2f2c4c532a62e7c16b2c79a16e2")
+    #print g.get_top5('facebook', simple=True)
